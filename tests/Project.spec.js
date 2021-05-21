@@ -2,12 +2,13 @@ const request = require('supertest');
 const app = require('../src/app');
 const db = require('../src/database');
 
-const { mockUserObject, mockUserEmail } = require('./mocks/User');
+const { mockProject, mockProjectUpdate } = require('./mocks/Project');
 
-var token = '';
+var token = process.env.TOKEN_TEST;
 
-// Teste de integração
-describe('Testando rotas de usuário', () => {
+describe('Testando rotas de projeto', () => {
+    var project_id = 0;
+
     beforeAll(async () => {
         await db.connect();
     });
@@ -16,39 +17,37 @@ describe('Testando rotas de usuário', () => {
         await db.close();
     });
 
-    it('Criando o usuário', async () => {
+    it('Criando o projeto', async () => {
         const response = await request(app)
-            .post('/users')
-            .send(mockUserObject);
-        expect(response.status).toBe(200);
-        expect(response.body.status).toEqual('success');
-    });
-
-    it('Efetuando o login', async () => {
-        const response = await request(app)
-            .post('/login')
-            .send(mockUserObject);
-        expect(response.status).toBe(200);
-        expect(response.body.status).toEqual('success');
-
-        // preenchendo o token para as demais rotas
-        token = response.body.token;
-    });
-
-    it('Exibindo o usuário', async () => {
-        const response = await request(app)
-            .get('/users')
+            .post('/projects')
             .set('Authorization', 'bearer ' + token)
-            .send(mockUserEmail);
+            .send(mockProject);
+        expect(response.status).toBe(200);
+        expect(response.body.status).toEqual('success');
+        project_id = response.body.project.id;
+    });
+
+    it('Listando os projetos', async () => {
+        const response = await request(app)
+            .get('/projects')
+            .set('Authorization', 'bearer ' + token);
         expect(response.status).toBe(200);
         expect(response.body.status).toEqual('success');
     });
 
-    it('Deletando o usuário', async () => {
+    it('Atualizando o projeto', async () => {
         const response = await request(app)
-            .delete('/users')
+            .put(`/projects/${project_id}`)
             .set('Authorization', 'bearer ' + token)
-            .send(mockUserEmail);
+            .send(mockProjectUpdate);
+        expect(response.status).toBe(200);
+        expect(response.body.status).toEqual('success');
+    });
+
+    it('Deletando o projeto', async () => {
+        const response = await request(app)
+            .delete(`/projects/${project_id}`)
+            .set('Authorization', 'bearer ' + token);
         expect(response.status).toBe(200);
         expect(response.body.status).toEqual('success');
     });

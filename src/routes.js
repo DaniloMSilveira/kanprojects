@@ -15,6 +15,7 @@ routes.post('/login', UserController.sigIn);
 // Neste caso, o Middleware de Autenticação só vai funcionar para as rotas que estão abaixo dele.
 routes.use(authMiddleware);
 routes.get('/users', UserController.show);
+routes.get('/usersall', UserController.showAll);
 routes.delete('/users', UserController.delete);
 
 // Projects

@@ -16,7 +16,7 @@ class UserController {
         .email()
         .required(),
       password: Yup.string()
-        .required(),
+        .required()
     });
 
     // Validação de campos com o Yup.
@@ -35,7 +35,7 @@ class UserController {
     }
 
     try {
-      const user = await User.create({name, email, password});
+      const user = await User.create({name, email, password, admin: false});
 
       return res.json({
         status: "success",
@@ -80,6 +80,20 @@ class UserController {
         email,
       }
     });
+  }
+
+  async showAll(req, res) {
+    // Denição do padrão de objeto com Yup.
+    try {
+      const users = await User.findAll();
+
+      return res.json({
+        status: "success",
+        users
+      });
+    } catch(err) {
+
+    }
   }
 
   async sigIn(req, res) {

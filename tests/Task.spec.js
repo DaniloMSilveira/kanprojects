@@ -2,12 +2,13 @@ const request = require('supertest');
 const app = require('../src/app');
 const db = require('../src/database');
 
-const { mockUserObject, mockUserEmail } = require('./mocks/User');
+const { mockTask, mockTaskUpdate } = require('./mocks/Task');
 
-var token = '';
+var token = process.env.TOKEN_TEST;
 
-// Teste de integração
-describe('Testando rotas de usuário', () => {
+describe('Testando rotas de task', () => {
+    var task_id = 0;
+
     beforeAll(async () => {
         await db.connect();
     });
@@ -16,39 +17,38 @@ describe('Testando rotas de usuário', () => {
         await db.close();
     });
 
-    it('Criando o usuário', async () => {
+    it('Criando a task', async () => {
         const response = await request(app)
-            .post('/users')
-            .send(mockUserObject);
-        expect(response.status).toBe(200);
-        expect(response.body.status).toEqual('success');
-    });
-
-    it('Efetuando o login', async () => {
-        const response = await request(app)
-            .post('/login')
-            .send(mockUserObject);
-        expect(response.status).toBe(200);
-        expect(response.body.status).toEqual('success');
-
-        // preenchendo o token para as demais rotas
-        token = response.body.token;
-    });
-
-    it('Exibindo o usuário', async () => {
-        const response = await request(app)
-            .get('/users')
+            .post('/tasks')
             .set('Authorization', 'bearer ' + token)
-            .send(mockUserEmail);
+            .send(mockTask);
+        expect(response.status).toBe(200);
+        expect(response.body.status).toEqual('success');
+        task_id = response.body.task.id;
+    });
+
+    it('Listando as tasks', async () => {
+        const response = await request(app)
+            .get('/tasks')
+            .set('Authorization', 'bearer ' + token)
+            .send(mockTask);
         expect(response.status).toBe(200);
         expect(response.body.status).toEqual('success');
     });
 
-    it('Deletando o usuário', async () => {
+    it('Atualizando a task', async () => {
         const response = await request(app)
-            .delete('/users')
+            .put(`/tasks/${task_id}`)
             .set('Authorization', 'bearer ' + token)
-            .send(mockUserEmail);
+            .send(mockTaskUpdate);
+        expect(response.status).toBe(200);
+        expect(response.body.status).toEqual('success');
+    });
+
+    it('Deletando a task', async () => {
+        const response = await request(app)
+            .delete(`/tasks/${task_id}`)
+            .set('Authorization', 'bearer ' + token);
         expect(response.status).toBe(200);
         expect(response.body.status).toEqual('success');
     });

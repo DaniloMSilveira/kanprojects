@@ -10,6 +10,7 @@ class User extends Model {
         // Campo virtual nunca vai existir na base de dados. Somente, é utilizado do lado do código.
         password: DataTypes.VIRTUAL,
         password_hash: DataTypes.STRING,
+        admin: DataTypes.BOOLEAN,
         createdAt: DataTypes.DATE,
         updatedAt: DataTypes.DATE
       },
