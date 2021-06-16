@@ -16,19 +16,15 @@ function login(e) {
         data: JSON.stringify(user)
    })
    .done(function(response){
-        console.log('cai no done');
-        console.log(response);
         if (response.status == 'success') {
             alert('Usuário logado com sucesso!');
             localStorage.setItem('token', response.token);
-            window.location.href = '/main?token=' + response.token;
+            window.location.href = '/home';
         } else {
             alert('Usuário não logado! Verifique os dados preenchidos');
         }
    })
    .fail(function(response){
-        console.log('cai no fail');
-        console.log(response.responseJSON);
         alert('Usuário não logado! Verifique os dados preenchidos');
    });
 }

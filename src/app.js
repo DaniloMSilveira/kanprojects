@@ -3,15 +3,21 @@ const express = require("express");
 require("express-async-errors");
 const routes = require("./routes");
 require("reflect-metadata");
+const path = require('path');
 
 
 // Modelos de retorno para erros
 const AppError = require("./errors/AppError");
 
 const app = express();
+
+// Setando ejs na view engine
+app.set('view engine', 'ejs');
+
 // Middlewares
 app.use(express.json());
 app.use(routes);
+app.use(express.static(path.join(__dirname, '..', 'public')))
 
 // Configurando retornos de erros
 app.use((err, req, res, next) => {

@@ -15,8 +15,6 @@ function register(e) {
         data: JSON.stringify(user)
    })
    .done(function(response){
-        console.log('cai no done');
-        console.log(response);
         if (response.status == 'success') {
             alert('Usuário cadastrado com sucesso!');
             window.location.href = '/login';
@@ -25,8 +23,6 @@ function register(e) {
         }
    })
    .fail(function(response){
-        console.log('cai no fail');
-        console.log(response.responseJSON);
         alert('Usuário não cadastrado! Verifique os dados preenchidos');
    });
 }

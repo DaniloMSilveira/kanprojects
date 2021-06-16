@@ -10,33 +10,39 @@ const authMiddleware = require('./middlewares/auth');
 
 const routes = new Router();
 
+// PAGINAS (EJS)
+routes.get('/', (req, res) => res.render('pages/login'));
+routes.get('/register', (req, res) => res.render('pages/register'));
+routes.get('/home', (req, res) => res.render('pages/home'));
+
+// ROTAS
 routes.post('/users', UserController.store);
 routes.post('/login', UserController.sigIn);
 // Neste caso, o Middleware de Autenticação só vai funcionar para as rotas que estão abaixo dele.
 routes.use(authMiddleware);
-routes.get('/users', UserController.show);
-routes.get('/usersall', UserController.showAll);
-routes.delete('/users', UserController.delete);
+routes.get('/users', authMiddleware, UserController.show);
+routes.get('/usersall', authMiddleware, UserController.showAll);
+routes.delete('/users', authMiddleware, UserController.delete);
 
 // Projects
-routes.get('/projects', ProjectController.show);
-routes.post('/projects', ProjectController.store);
-routes.put('/projects/:id', ProjectController.update);
-routes.delete('/projects/:id', ProjectController.delete);
+routes.get('/projects', authMiddleware, ProjectController.show);
+routes.post('/projects', authMiddleware, ProjectController.store);
+routes.put('/projects/:id', authMiddleware, ProjectController.update);
+routes.delete('/projects/:id', authMiddleware, ProjectController.delete);
 
 // Sprints
-routes.get('/sprints', SprintController.show);
-routes.post('/sprints', SprintController.store);
-routes.delete('/sprints/:id', SprintController.delete);
+routes.get('/sprints', authMiddleware, SprintController.show);
+routes.post('/sprints', authMiddleware, SprintController.store);
+routes.delete('/sprints/:id', authMiddleware, SprintController.delete);
 
 // Tasks
-routes.get('/tasks', TaskController.show);
-routes.post('/tasks', TaskController.store);
-routes.put('/tasks/:id', TaskController.update);
-routes.delete('/tasks/:id', TaskController.delete);
+routes.get('/tasks', authMiddleware, TaskController.show);
+routes.post('/tasks', authMiddleware, TaskController.store);
+routes.put('/tasks/:id', authMiddleware, TaskController.update);
+routes.delete('/tasks/:id', authMiddleware, TaskController.delete);
 
 // TaskUsers
-routes.post('/taskUsers', TaskUserController.store);
-routes.delete('/taskUsers/:id', TaskUserController.delete);
+routes.post('/taskUsers', authMiddleware, TaskUserController.store);
+routes.delete('/taskUsers/:id', authMiddleware, TaskUserController.delete);
 
 module.exports = routes;

@@ -9,8 +9,15 @@
 
 :root {
     --background: #f2f3f5;
+    --white: #fff;
+    --black: #000;
+    --title: #607d8b;
     --text: #666666;
+    --green: #00FF00;
+    --green-hover: #00e600;
     --green-light: #80D09F;
+    --blue: #0093E9;
+    --blue-hover: #0080e9;
     --blue-light: #00E9CB;
     --green-medium: #80D0C7;
     --blue-medium: #0093E9;
