@@ -19,7 +19,6 @@ routes.get('/home', (req, res) => res.render('pages/home'));
 routes.post('/users', UserController.store);
 routes.post('/login', UserController.sigIn);
 // Neste caso, o Middleware de Autenticação só vai funcionar para as rotas que estão abaixo dele.
-routes.use(authMiddleware);
 routes.get('/users', authMiddleware, UserController.show);
 routes.get('/usersall', authMiddleware, UserController.showAll);
 routes.delete('/users', authMiddleware, UserController.delete);

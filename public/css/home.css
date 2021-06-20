@@ -1,25 +1,7 @@
 @import './global.css';
 
-.navbar-brand span {
-    font-weight: bold;
-    font-size: 34px;
-}
-
-.nav-link {
-    font-weight: bold;
-}
-
-.form-inline span {
-    font-weight: bold;
-    font-size: 16px;
-    color: var(--black);
-}
-
-.form-inline span a {
-    color: var(--text);
-    font-size: 14px;
-    display: inline-block;
-    margin: 10px 5px;
-    cursor: pointer;
-    text-decoration: none;
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

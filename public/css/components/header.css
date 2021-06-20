@@ -1,0 +1,23 @@
+.navbar-brand span {
+    font-weight: bold;
+    font-size: 34px;
+}
+
+.nav-link {
+    font-weight: bold;
+}
+
+.form-inline span {
+    font-weight: bold;
+    font-size: 16px;
+    color: var(--white);
+}
+
+.form-inline span a {
+    color: var(--user-name);
+    font-size: 14px;
+    display: inline-block;
+    margin: 0px 5px;
+    cursor: pointer;
+    text-decoration: none;
+}

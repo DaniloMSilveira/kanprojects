@@ -10,9 +10,10 @@
 :root {
     --background: #f2f3f5;
     --white: #fff;
+    --user-name: #eee;
     --black: #000;
     --title: #607d8b;
-    --text: #666666;
+    --text: #999;
     --green: #00FF00;
     --green-hover: #00e600;
     --green-light: #80D09F;
