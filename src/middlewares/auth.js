@@ -9,7 +9,7 @@ module.exports = async (req, res, next) => {
   const authHeader = req.headers.authorization;
 
   if (!authHeader) {
-    throw new AppError('Erro ao validar o token de acesso','Token não informado');
+    throw new AppError('Erro ao validar o token de acesso','Token não informado',401);
   }
 
   /* O authHeader retorna o Beare que é o tipo da autenticação + token. O Split
@@ -24,7 +24,7 @@ module.exports = async (req, res, next) => {
     // Incluind o Id do usuario autenticado na requisicao que chamou o Middleawe de autenticação.
     req.userId = decoded.id;
   } catch (err) {
-    throw new AppError('Erro ao validar o token de acesso','Token não é válido');
+    throw new AppError('Erro ao validar o token de acesso','Token não é válido',401);
   }
 
   return next();

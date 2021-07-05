@@ -15,35 +15,37 @@
     </header>
     <div class="container">
         <h1>Projetos</h1>
+        <div class="input">
+            <label for="project">Selecione o projeto:</label>
+            <select name="project" id="project">
+                <option style="display:none" value="" disabled selected></option>
+                <option value="1">Primeiro Projeto</option>
+                <option value="2">Segundo Projeto</option>
+                <option value="3">Terceiro Projeto</option>
+                <option value="4">Quarto Projeto</option>
+            </select>
+        </div>
+        <div class="input">
+            <label for="sprint">Selecione a sprint:</label>
+            <select name="sprint" id="sprint">
+                <option style="display:none" value="" disabled selected></option>
+                <option value="1">Primeiro Sprint</option>
+                <option value="2">Segundo Sprint</option>
+                <option value="3">Terceiro Sprint</option>
+                <option value="4">Quarto Sprint</option>
+            </select>
+        </div>
         <section>
-            <div class="input">
-                <label for="project">Selecione o projeto:</label>
-                <select name="project" id="project">
-                    <option style="display:none" value="" disabled selected></option>
-                    <option value="1">Primeiro Projeto</option>
-                    <option value="2">Segundo Projeto</option>
-                    <option value="3">Terceiro Projeto</option>
-                    <option value="4">Quarto Projeto</option>
-                </select>
-            </div>
-            <div class="input">
-                <label for="sprint">Selecione a sprint:</label>
-                <select name="sprint" id="sprint">
-                    <option style="display:none" value="" disabled selected></option>
-                    <option value="1">Primeiro Sprint</option>
-                    <option value="2">Segundo Sprint</option>
-                    <option value="3">Terceiro Sprint</option>
-                    <option value="4">Quarto Sprint</option>
-                </select>
-            </div>
         </section>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
     <script src="/js/utils/security.js"></script>
     <script src="/js/utils/methods.js"></script>
+    <script src="/js/home.js"></script>
 </body>
 </html>

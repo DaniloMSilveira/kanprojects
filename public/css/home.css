@@ -4,6 +4,10 @@ header {
     height: 8%;
 }
 
+h1 {
+    margin: 1rem auto;
+}
+
 .container {
     height: 92%;
     display: flex;
@@ -26,7 +30,7 @@ section {
 
 .input {
     align-self: center;
-    margin: 0.3rem auto;
+    margin: 0.2rem auto;
 }
 
 .input label {

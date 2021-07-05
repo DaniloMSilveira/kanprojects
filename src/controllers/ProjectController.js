@@ -60,6 +60,7 @@ class ProjectController {
         projects
       });
     } catch(err) {
+      console.log(err)
       throw new AppError('Erro ao listar os projetos',err);
     }
   }
